@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid>"
+     <div class="row">
+         <div class="banner">
+             <div class="banner-text">
+                 <h1>ToDo</h1>
+             </div>
+         </div>
+
+     </div>
+</div>
+<form method="POST">
+    {% csrf_token %}
+    <input type="text" name="name" placeholder="Task to do">
+    <input type="text" name="priority" placeholder="Enter Priority">
+    <input type="date" name="date" placeholder="Enter Date">
+    <input type="submit">
+</form>
+{% for i in taskobj %}
+{{i.name}}
+{{i.priority}}
+{{i.date}}
+<a href="{% url 'delete' i.id %}">Done</a> <br>
+{% endfor %}
+{% endblock %}
+
+
